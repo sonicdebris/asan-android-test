@@ -42,6 +42,10 @@ android {
         }
 
         debug {
+
+            sourceSets.debug.resources.srcDir "wrap"
+            print sourceSets.debug.resources.srcDirs.toListString()
+
             externalNativeBuild {
                 cmake {
                     arguments "-DANDROID_STL=c++_shared"
