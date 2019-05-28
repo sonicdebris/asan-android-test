@@ -27,7 +27,9 @@ target_link_libraries(native-lib PRIVATE log)
 # Ideally we would use debug type properties and generator expressions,
 # But with add_custom_command that becomes kind of convoluted
 
-if (CMAKE_BUILD_TYPE STREQUAL Debug)
+if (SANITIZE)
+
+    message("Enabling sanitizer in native library")
 
     target_compile_options(native-lib PRIVATE -fsanitize=address -fno-omit-frame-pointer)
     target_link_libraries(native-lib PRIVATE -fsanitize=address)

@@ -40,14 +40,23 @@ android {
         }
 
         debug {
+            externalNativeBuild {
+                cmake {
+                    arguments "-DANDROID_STL=c++_static"
+                }
+            }
+        }
 
-            sourceSets.debug.resources.srcDir "wrap"
+        sanitize {
+            initWith debug
+            sourceSets.sanitize.resources.srcDir "wrap"
 
             externalNativeBuild {
                 cmake {
-                    arguments "-DANDROID_STL=c++_shared"
+                    arguments "-DANDROID_STL=c++_shared", "-DSANITIZE=TRUE"
                 }
             }
+
         }
     }
 }
